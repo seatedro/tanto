@@ -1,0 +1,16 @@
+{
+  "name": "tanto",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "openai": "^4.83.0",
+    "ora": "^8.2.0"
+  }
+}

@@ -1,0 +1,42 @@
+{
+	"schema": {
+		"type": "object",
+		"properties": {
+			"name": {
+				"type": "string"
+			},
+			"age": {
+				"type": "integer",
+				"minimum": 0
+			},
+			"email": {
+				"type": "string",
+				"format": "email"
+			}
+		},
+		"required": [
+			"name",
+			"age"
+		]
+	},
+	"data": [
+		{
+			"name": "John Doe",
+			"age": 30,
+			"email": "john.doe@example.com"
+		},
+		{
+			"name": "Jane Doe",
+			"age": "thirty",
+			"email": "jane@example"
+		}
+	],
+	"transform": {
+		"fields_to_uppercase": [
+			"name"
+		],
+		"fields_to_remove": [
+			"email"
+		]
+	}
+}

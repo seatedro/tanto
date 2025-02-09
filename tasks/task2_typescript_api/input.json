@@ -1,0 +1,98 @@
+{
+	"apiSpec": {
+		"endpoints": {
+			"/users": {
+				"method": "GET",
+				"responseSchema": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "number"
+							},
+							"name": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			},
+			"/posts/{userId}": {
+				"method": "GET",
+				"responseSchema": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "number"
+							},
+							"userId": {
+								"type": "number"
+							},
+							"title": {
+								"type": "string"
+							},
+							"content": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"responses": [
+		{
+			"url": "/users",
+			"status": 200,
+			"data": [
+				{
+					"id": 1,
+					"name": "Alice"
+				},
+				{
+					"id": 2,
+					"name": "Bob"
+				}
+			]
+		},
+		{
+			"url": "/posts/1",
+			"status": 200,
+			"data": [
+				{
+					"id": 1,
+					"userId": 1,
+					"title": "Post 1",
+					"content": "Content 1"
+				},
+				{
+					"id": 2,
+					"userId": 1,
+					"title": "Post 2",
+					"content": "Content 2"
+				}
+			]
+		},
+		{
+			"url": "/posts/2",
+			"status": 200,
+			"data": [
+				{
+					"id": 3,
+					"userId": 2,
+					"title": "Post 3",
+					"content": "Content 3"
+				}
+			]
+		}
+	],
+	"aggregation": {
+		"groupBy": "userId",
+		"aggregate": {
+			"postCount": "count"
+		}
+	}
+}

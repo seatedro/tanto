@@ -1,0 +1,23 @@
+[
+	{
+		"NAME": "John Doe",
+		"age": 30
+	},
+	{
+		"valid": false,
+		"errors": [
+			{
+				"path": [
+					"age"
+				],
+				"message": "Expected integer, got string"
+			},
+			{
+				"path": [
+					"email"
+				],
+				"message": "Invalid email format"
+			}
+		]
+	}
+]

@@ -1,0 +1,1 @@
+fig:5;apple:1,,,cherry:3,date:4,,,,,banana:2
