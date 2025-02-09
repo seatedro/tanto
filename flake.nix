@@ -28,6 +28,7 @@
         shellHook = ''
           export PATH="$PATH:$HOME/.cargo/bin"
           export PATH="$PATH:$HOME/zig"
+          bun install
         '';
       };
     };
