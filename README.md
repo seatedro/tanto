@@ -6,7 +6,6 @@ An opinionated LLM benchmark that goes beyond webslop.
 
 *   [Bun](https://bun.sh/)
 *   [Nix](https://nixos.org/download.html) (for the development environment)
-*   [Hyperfine](https://github.com/sharkdp/hyperfine) (for benchmarking)
 *   An OpenRouter API key (set as the `OPENROUTER_API_KEY` environment variable)
 
 **Installation:**
