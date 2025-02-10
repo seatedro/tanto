@@ -18,4 +18,4 @@ The input is a string with two lines:
 
 **Output:**
 
-Output a comma-separated string representing the starting addresses of each *successful* allocation as hexadecimal strings (e.g., "0x0", "0xa").  If an allocation *fails* (out of memory), output "OOM" for that request.  Print this output to standard out. Do not include additional information such as "Output:"
+Output a comma-separated string representing the following: If an allocation *succeed* print T, if an allocation *fails* (out of memory), output "OOM" for that request. Print this output to standard out. Do not include additional information such as "Output:"
