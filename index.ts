@@ -1,5 +1,5 @@
 import chalk from "chalk";
-import ora from "ora";
+import ora, { type Ora } from "ora";
 import * as path from "path";
 import fs from "node:fs/promises";
 import OpenAI from "openai";
@@ -271,7 +271,7 @@ async function installDependencies(
           path.join(task.dir, "package.json"),
           JSON.stringify(packageJsonContent, null, 2),
         );
-        const bunInstall = await $`bun install`;
+        const bunInstall = await $`bun install`.quiet().cwd(task.dir);
         if (bunInstall.exitCode !== 0) {
           throw new Error(
             "Dependency Installation Failed:" + bunInstall.stderr,
@@ -513,7 +513,11 @@ export async function queryLLM(
 }
 
 async function main() {
-  const spinner = ora("Loading tasks...").start();
+  // @ts-expect-error
+  let spinner: Ora = null;
+  if (!benchmark) spinner = ora("Loading tasks...").start();
+  const startTime = performance.now();
+  let executionTime = 0;
   const tasks = await loadTasks();
   if (!benchmark) spinner.succeed(chalk.green(`Loaded ${tasks.length} tasks.`));
 
@@ -538,9 +542,8 @@ async function main() {
         continue;
       }
 
-      const startTime = performance.now();
       const { passed, error } = await runTask(task, generatedCode);
-      const executionTime = performance.now() - startTime;
+      executionTime = performance.now() - startTime;
 
       if (passed) {
         if (!benchmark)
@@ -563,11 +566,11 @@ async function main() {
     }
   }
 
-  if (benchmark) {
+  if (!benchmark) {
     generateReport(results);
   } else {
     const passedCount = Object.values(results).filter((r) => r.passed).length;
-    console.log(passedCount);
+    console.log(`${passedCount}:${executionTime}`);
   }
 }
 
